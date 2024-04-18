@@ -125,17 +125,17 @@ function createDlg() {
     var buttons                        = dlg.add('group');
         buttons.orientation            = 'row';
 
-    buttons.left                = buttons.add('group');
-    buttons.left.orientation    = 'row';
+    buttons.left                  = buttons.add('group');
+    buttons.left.orientation      = 'row';
     buttons.left.alignChildren    = 'left';
-    buttons.left.minimumSize    = [300, 0];
-    buttons.right                = buttons.add('group');
-    buttons.right.orientation    = 'row';
-    buttons.right.alignChildren    = 'right';
+    buttons.left.minimumSize      = [300, 0];
+    buttons.right                 = buttons.add('group');
+    buttons.right.orientation     = 'row';
+    buttons.right.alignChildren   = 'right';
 
-    var version                    = buttons.left.add('statictext', undefined, 'Version: ' + VERSION, {readonly:true,multiline:false});
-    var cancelBtn                = buttons.right.add('button', undefined, 'Cancel', {name:'cancel'});
-    var okBtn                    = buttons.right.add('button', undefined, 'OK', {name:'ok'});
+    var version                   = buttons.left.add('statictext', undefined, 'Version: ' + VERSION, {readonly:true,multiline:false});
+    var cancelBtn                 = buttons.right.add('button', undefined, 'Cancel', {name:'cancel'});
+    var okBtn                     = buttons.right.add('button', undefined, 'OK', {name:'ok'});
         okBtn.onClick = function() {
             okBtn.enabled = false;
             dlg.close(1);
