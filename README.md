@@ -1,5 +1,5 @@
-# Johnny Storm's Comic Scripts for Adobe
-A library of Extendscripts used in the production of comics using Adobe products
+# Johnny Storm's Comic Scripts for Adobe Creative Suite
+A library of Extendscripts used in the production of comics using Adobe creative suite.
 
 ## Illustrator
 
@@ -15,9 +15,21 @@ Dialogue is recognized two ways:
 #### Sample Dialogue
 Copy and paste the following text to test the script.
 
-`1. ROYAL GUARD 1: This is  an "example" of —How this would– work for dialogue text.`
+`1. SPEAKER 1: This is  an "example" of —How this would– work for dialogue text.`
 
 ![ProcessText UI](assets/ProcessText.png)
 
+## Photoshop
+
+### Merge Pages
+The Merge Pages script will allow you to select two images and merge them into a single image the width of both pages.
+
+![MergePages UI](assets/MergePages.png)
+
+## inDesign
+Coming soon
+
 ### Links
 - <a href="https://helpx.adobe.com/illustrator/using/automation-scripts.html">Learn to run and install scripts in Illustrator.</a>
+- <a href="https://helpx.adobe.com/photoshop/using/scripting.html">Scripting in Photoshop</a>
+- <a href="https://helpx.adobe.com/indesign/using/scripting.html">Scripting in inDesign</a>
