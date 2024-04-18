@@ -5,8 +5,8 @@
  * and converts en and em dashes to double dashes (--). After the script finishes
  * processing the text it creates text objects for each paragraph.
  *
- * @author		Johnny Storm
- * @version		1.0.0
+ * @author        Johnny Storm
+ * @version        1.0.1
  *
  * 2024-04-16: Initial Version.
  *
@@ -37,14 +37,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 /*
-@@@BUILDINFO@@@ ProcessText.jsx 1.0.0.0
+@@@BUILDINFO@@@ ProcessText.jsx 1.0.1.0
 */
 #target illustrator
 #script 'Process Comic Script';
 
 app.preferences.setBooleanPreference("ShowExternalJSXWarning", false);
 
-const VERSION	= "1.0.0";
+const VERSION    = "1.0.1";
 const HYPEN     = 34;
 const EMDASH    = 8212;
 const ENDASH    = 8211;
@@ -61,24 +61,24 @@ Array.prototype.indexOf = function ( item ) {
 };
 
 Object.prototype.writePlist = function () {
-	var dict = new XML('<dict/>');
-	for (var key in this) {
-		if (typeof this[key] != 'function') {
-			var node = new XML('<key>'+key+'</key>');
-			dict.appendChild(node);
-			var string = new XML('<string>'+this[key]+'</string>');
-			dict.appendChild(string);
-		}
-	}
+    var dict = new XML('<dict/>');
+    for (var key in this) {
+        if (typeof this[key] != 'function') {
+            var node = new XML('<key>'+key+'</key>');
+            dict.appendChild(node);
+            var string = new XML('<string>'+this[key]+'</string>');
+            dict.appendChild(string);
+        }
+    }
 
-	var root = new XML('<plist/>');
-		root.@version = '1.0';
-		root.appendChild(dict);
+    var root = new XML('<plist/>');
+        root.@version = '1.0';
+        root.appendChild(dict);
 
-	var plist = new File(PREFS_FOLDER + '/' + PREFS);
-		plist.open('w');
-		plist.writeln(root.toXMLString());
-		plist.close();
+    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+        plist.open('w');
+        plist.writeln(root.toXMLString());
+        plist.close();
 
 };
 
@@ -103,49 +103,52 @@ if (app.documents.length == 0) {
 }
 
 function createDlg() {
-	var dlg	                       = new Window('dialog', 'Prep Lettering Files');
+    var dlg                           = new Window('dialog', 'Prep Lettering Files');
 
-	var body                       = dlg.add("panel {orientation: 'row'}");
+    var body                       = dlg.add("panel {orientation: 'row'}");
 
-	var row                        = body.add('group');
-		row.orientation            = 'column';
-		row.minimumSize.width      = 450;
-		row.alignment              = [ ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP];
-		row.alignChildren          = ['left','bottom'];
+    var row                        = body.add('group');
+        row.orientation            = 'column';
+        row.minimumSize.width      = 450;
+        row.alignment              = [ ScriptUI.Alignment.LEFT, ScriptUI.Alignment.TOP];
+        row.alignChildren          = ['left','bottom'];
+
+    var label                      = row.add("Group {orientation: 'row', alignment: 'left'}");
+        label.s                    = row.add("StaticText { text:'Select Dialog Font:', minimumSize: [75,0] }");
 
     var dd                         = row.add("DropDownList", undefined, fontNames);
         dd.items[ selectedFont ].selected = true
     var text                       = row.add("Group {orientation: 'row', alignment: 'left'}");
-	    text.s                     = row.add("StaticText { text:'Paste Text Here:', minimumSize: [75,0] }");
+        text.s                     = row.add("StaticText { text:'Paste Text Here:', minimumSize: [75,0] }");
     this.value                     = row.add('EditText', [0, 0, 450, 200], '', {multiline:true});
 
-	var buttons						= dlg.add('group');
-		buttons.orientation			= 'row';
+    var buttons                        = dlg.add('group');
+        buttons.orientation            = 'row';
 
-	buttons.left				= buttons.add('group');
-	buttons.left.orientation	= 'row';
-	buttons.left.alignChildren	= 'left';
-	buttons.left.minimumSize	= [300, 0];
-	buttons.right				= buttons.add('group');
-	buttons.right.orientation	= 'row';
-	buttons.right.alignChildren	= 'right';
+    buttons.left                = buttons.add('group');
+    buttons.left.orientation    = 'row';
+    buttons.left.alignChildren    = 'left';
+    buttons.left.minimumSize    = [300, 0];
+    buttons.right                = buttons.add('group');
+    buttons.right.orientation    = 'row';
+    buttons.right.alignChildren    = 'right';
 
-	var version		            = buttons.left.add('statictext', undefined, 'Version: ' + VERSION, {readonly:true,multiline:false});
-	var cancelBtn		        = buttons.right.add('button', undefined, 'Cancel', {name:'cancel'});
-	var okBtn			        = buttons.right.add('button', undefined, 'OK', {name:'ok'});
-		okBtn.onClick = function() {
+    var version                    = buttons.left.add('statictext', undefined, 'Version: ' + VERSION, {readonly:true,multiline:false});
+    var cancelBtn                = buttons.right.add('button', undefined, 'Cancel', {name:'cancel'});
+    var okBtn                    = buttons.right.add('button', undefined, 'OK', {name:'ok'});
+        okBtn.onClick = function() {
             okBtn.enabled = false;
             dlg.close(1);
-		}
+        }
 
-	dlg.center();
-	if (dlg.show() == 1) {
+    dlg.center();
+    if (dlg.show() == 1) {
         var index = dd.selection.index;
         prefs.selectedFont = fontNames[index];
         prefs.writePlist();
         selectedFont = fonts[index];
         processText(this.value.text);
-	}
+    }
 }
 
 function processText( str ) {
@@ -251,24 +254,24 @@ function addDialogue( str, y ) {
 
 
 function readPlist() {
-	var plist = new File(PREFS_FOLDER + '/' + PREFS);
-		plist.open('r');
+    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+        plist.open('r');
 
-	var prefs = plist.read();
+    var prefs = plist.read();
 
-		plist.close();
+        plist.close();
 
-	var doc = new XML(prefs);
+    var doc = new XML(prefs);
 
-	var list = doc.dict.children();
-	var key = null;
-	var o = {};
-	for (var i= 0 ; i < list.length(); i++) {
-		if (list[i].name() == 'key') {
-			key = list[i];
-		} else {
-			o[key] = list[i];
-		}
-	}
-	return o;
+    var list = doc.dict.children();
+    var key = null;
+    var o = {};
+    for (var i= 0 ; i < list.length(); i++) {
+        if (list[i].name() == 'key') {
+            key = list[i];
+        } else {
+            o[key] = list[i];
+        }
+    }
+    return o;
 };
