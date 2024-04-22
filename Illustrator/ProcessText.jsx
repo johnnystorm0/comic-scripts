@@ -82,10 +82,8 @@ Object.prototype.writePlist = function () {
 
 };
 
-
-
 const OS = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";
-const PREFS_FOLDER  = OS == 'MAC' ? '~/Library/Preferences' : '/AppData/Roaming';
+const PREFS_FOLDER  = OS == 'MAC' ? '~/Library/Preferences' : Folder.appData;
 const PREFS     = 'com.johnnystorm.default.plist';
 var prefs       = readPlist();
 
@@ -98,12 +96,13 @@ if (app.documents.length == 0) {
     const height     = doc.artboards[0].artboardRect[3];
     const fonts      = findComicFonts();
     const fontNames  = findComicFontNames();
-    var selectedFont = prefs.selectedFont ? findFont(prefs.selectedFont) : fonts[0];
+    var selectedFontIndex = prefs && prefs.selectedFont ? findFont(prefs.selectedFont) : 0;
+    var selectedFont      = fonts[selectedFontIndex];
     const dlg = createDlg();
 }
 
 function createDlg() {
-    var dlg                           = new Window('dialog', 'Prep Lettering Files');
+    var dlg                        = new Window('dialog', 'Prep Lettering Files');
 
     var body                       = dlg.add("panel {orientation: 'row'}");
 
@@ -117,7 +116,7 @@ function createDlg() {
         label.s                    = row.add("StaticText { text:'Select Dialog Font:', minimumSize: [75,0] }");
 
     var dd                         = row.add("DropDownList", undefined, fontNames);
-        dd.items[ selectedFont ].selected = true
+        dd.items[ selectedFontIndex ].selected = true
     var text                       = row.add("Group {orientation: 'row', alignment: 'left'}");
         text.s                     = row.add("StaticText { text:'Paste Text Here:', minimumSize: [75,0] }");
     this.value                     = row.add('EditText', [0, 0, 450, 200], '', {multiline:true});
