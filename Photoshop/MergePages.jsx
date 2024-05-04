@@ -55,20 +55,20 @@ Object.prototype.writePlist = function () {
         root.@version = '1.0';
         root.appendChild(dict);
 
-    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+    var plist = new File(Folder.userData + '/' + PREFS);
         plist.open('w');
         plist.writeln(root.toXMLString());
         plist.close();
 
 };
+
 const VERSION         = "1.0.0";
 const OS             = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";
-const PREFS_FOLDER   = OS == 'MAC' ? '~/Library/Preferences' : '/AppData/Roaming';
 const PREFS          = 'com.johnnystorm.default.plist';
-const DEFAULT_FOLDER = OS == 'MAC' ? '~/Desktop' : 'C:\Users\Default\Desktop';
+const DEFAULT_FOLDER = Folder.desktop;
 
 var prefs            = readPlist();
-var defaultPath         = prefs.defaultPath ? prefs.defaultPath : DEFAULT_FOLDER;
+var defaultPath      = prefs.defaultPath ? prefs.defaultPath : DEFAULT_FOLDER;
 
 const fileMask = function(file) {
     return file instanceof Folder || file.name.match(/\.jpg$/i) ? true : false;
@@ -234,7 +234,7 @@ function alignToCanvas(alignToCanvas, alignValue) {
 }
 
 function readPlist() {
-    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+    var plist = new File(Folder.userData + '/' + PREFS);
         plist.open('r');
 
     var prefs = plist.read();

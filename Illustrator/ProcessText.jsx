@@ -6,7 +6,7 @@
  * processing the text it creates text objects for each paragraph.
  *
  * @author        Johnny Storm
- * @version        1.0.1
+ * @version        1.0.2
  *
  * 2024-04-16: Initial Version.
  *
@@ -37,14 +37,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 /*
-@@@BUILDINFO@@@ ProcessText.jsx 1.0.1.0
+@@@BUILDINFO@@@ ProcessText.jsx 1.0.2.0
 */
 #target illustrator
 #script 'Process Comic Script';
 
 app.preferences.setBooleanPreference("ShowExternalJSXWarning", false);
 
-const VERSION    = "1.0.1";
+const VERSION    = "1.0.2";
 const HYPEN     = 34;
 const EMDASH    = 8212;
 const ENDASH    = 8211;
@@ -75,7 +75,7 @@ Object.prototype.writePlist = function () {
         root.@version = '1.0';
         root.appendChild(dict);
 
-    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+    var plist = new File(Folder.appData + '/' + PREFS);
         plist.open('w');
         plist.writeln(root.toXMLString());
         plist.close();
@@ -83,7 +83,6 @@ Object.prototype.writePlist = function () {
 };
 
 const OS = $.os.toLowerCase().indexOf('mac') >= 0 ? "MAC": "WINDOWS";
-const PREFS_FOLDER  = OS == 'MAC' ? '~/Library/Preferences' : Folder.appData;
 const PREFS     = 'com.johnnystorm.default.plist';
 var prefs       = readPlist();
 
@@ -253,7 +252,7 @@ function addDialogue( str, y ) {
 
 
 function readPlist() {
-    var plist = new File(PREFS_FOLDER + '/' + PREFS);
+    var plist = new File(Folder.appData + '/' + PREFS);
         plist.open('r');
 
     var prefs = plist.read();
