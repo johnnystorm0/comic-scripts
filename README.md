@@ -3,13 +3,27 @@ A library of Extendscripts used in the production of comics using Adobe creative
 
 ## Illustrator
 
+### LetteringFiles
+This script will take a folder of TIFF files and create the corresponding lettering files. The script creates multiple layers for each aspect of the lettering file, adds a bounding box, and places the TIFF file on a template layer.
 
+#### Illustrator Layers
+
+| Name | Description |
+| ---- | ----------- |
+| Lettering | This is where your text go. |
+| Top Balloons |  This is where the white part of the word balloons go. |
+| Tails | This is where the tails for your baloons go. They sit between the white balloons and the outline balloons. |
+| Bottom Balloons | This is where the outline balloons go. |
+| Bleed | This is a guide to ensure the lettering files align perfectly in inDesign. |
+| Artwork | This is a template layer (won't show up in inDesign) with the artwork placed for use in laying out your balloons. |
+
+**PLEASE NOTE:** In order for the scrip to be dynamic it uses the height and width of the first page to determine the size of the file's artboad. Please refer to the following table to ensure your files are sized correctly.
 
 #### Traditional American Comic Sizes:
-| Single | Bleed  | Trim   | Live  |   | DPS    | Bleed  | Trim   | Live  |
-| ------ | -----: | -----: | ----: | - | ------ | -----: | -----: | ----: |
-| Width  | 6.875  | 6.625  | 6.125 |   | Width  | 13.5   | 13.25  | 12.75 |
-| Height | 10.437 | 10.437 | 9.687 |   | Height | 10.437 | 10.437 | 9.687 |
+| Single | Bleed  | Trim    | Live  |   | DPS    | Bleed  | Trim    | Live  |
+| ------ | -----: | ------: | ----: | - | ------ | -----: | ------: | ----: |
+| Width  | 6.875  | 6.625   | 6.125 |   | Width  | 13.5   | 13.25   | 12.75 |
+| Height | 10.437 | 10.1875 | 9.687 |   | Height | 10.437 | 10.1875 | 9.687 |
 
 <table>
     <tr>
@@ -48,13 +62,18 @@ This is an example of page direction. The page direction will be included as par
 
 ## Photoshop
 
+### Review Copy
+This script will rasterize a print-ready PDF file and export a flattened PDF (great for digital distribution), a directory of JPEG files, a directory of flattened TIFF files, or a watermarked Review Copy PDF (great for sending to review sites).
+
+<img src="assets/ReviewCopy.png" width="750" />
+
 ### Merge Pages
 The Merge Pages script will allow you to select two images and merge them into a single image the width of both pages.
 
 <img src="assets/MergePages.png" width="750" />
 
 ### Add Guides
-The Add Guides script will add guides to your Photoshop document that represent the trim (.125in) and safe (.375) areas.
+The Add Guides script will add guides to your Photoshop document that represent the trim (.125in) and safe (.375in) areas.
 
 <img src="assets/add-guides.jpg" width="500" />
 
