@@ -19,6 +19,8 @@ This script will take a folder of TIFF files and create the corresponding letter
 
 **PLEASE NOTE:** In order for the scrip to be dynamic it uses the height and width of the first page to determine the size of the file's artboad. Please refer to the following table to ensure your files are sized correctly.
 
+<img src="assets/LetteringFiles.png" width="750" />
+
 #### Traditional American Comic Sizes:
 | Single | Bleed  | Trim    | Live  |   | DPS    | Bleed  | Trim    | Live  |
 | ------ | -----: | ------: | ----: | - | ------ | -----: | ------: | ----: |
@@ -63,7 +65,9 @@ This is an example of page direction. The page direction will be included as par
 ## Photoshop
 
 ### Review Copy
-This script will rasterize a print-ready PDF file and export a flattened PDF (great for digital distribution), a directory of JPEG files, a directory of flattened TIFF files, or a watermarked Review Copy PDF (great for sending to review sites).
+This script will rasterize a print-ready PDF file and export a flattened PDF (great for digital distribution), a directory of JPEG files, a directory of flattened TIFF files, or a watermarked *Review Copy* PDF (great for sending to review sites).
+
+**PLEASE NOTE** Depending on the size of the PDF file it may take some time to process. Best recommendation is to start the process then go get a cup of coffee.
 
 <img src="assets/ReviewCopy.png" width="750" />
 
